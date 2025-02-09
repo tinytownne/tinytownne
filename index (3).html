@@ -1,0 +1,86 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Love Countdown
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+ </head>
+ <body class="bg-pink-100 font-roboto">
+  <div class="min-h-screen flex flex-col items-center justify-center">
+   <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
+    <div class="text-center mb-6">
+     <h1 class="text-3xl font-bold text-pink-600">
+      Love Countdown
+     </h1>
+     <p class="text-gray-600">
+      Counting the days we've been together
+     </p>
+    </div>
+    <div class="flex justify-center mb-6">
+     <img alt="A placeholder image of a heart with a calendar inside it" class="w-24 h-24" height="150" id="heart-image" src="https://storage.googleapis.com/a1aa/image/LWXSRxogPM6BIr0_iRal9Ged6JmoNqllLdbYCPsnObs.jpg" width="150"/>
+    </div>
+    <div class="text-center mb-6">
+     <input accept="image/*" class="mb-4" id="image-upload" type="file"/>
+     <p class="text-2xl font-bold text-gray-800">
+      We've been together for:
+     </p>
+     <p class="text-4xl font-bold text-pink-600" id="days-count">
+      0 days
+     </p>
+    </div>
+    <div class="text-center mb-6">
+     <input accept="audio/*" class="mb-4" id="audio-upload" type="file"/>
+     <audio controls id="audio-player" style="display: none;">
+      <source id="audio-source" src=""/>
+      Your browser does not support the audio element.
+     </audio>
+    </div>
+    <div class="text-center">
+     <button class="bg-pink-500 text-white px-4 py-2 rounded-full shadow hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-opacity-75">
+      <i class="fas fa-heart">
+      </i>
+      Share the Love
+     </button>
+    </div>
+   </div>
+  </div>
+  <script>
+   // Set the date when the relationship started
+        const startDate = new Date('2020-01-01');
+        const today = new Date();
+        const timeDifference = today - startDate;
+        const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        document.getElementById('days-count').textContent = `${daysDifference} days`;
+
+        // Image upload functionality
+        document.getElementById('image-upload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('heart-image').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Audio upload functionality
+        document.getElementById('audio-upload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const audioPlayer = document.getElementById('audio-player');
+                const audioSource = document.getElementById('audio-source');
+                audioSource.src = URL.createObjectURL(file);
+                audioPlayer.style.display = 'block';
+                audioPlayer.load();
+            }
+        });
+  </script>
+ </body>
+</html>Id('audio-source');
+                audioSource.src = URL.createObjectURL
